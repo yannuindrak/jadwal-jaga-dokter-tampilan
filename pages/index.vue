@@ -10,18 +10,18 @@
   </div>
   <br /> -->
 
-  <v-divider :thickness="4" class="border-opacity-50" color="black"></v-divider>
+  <!-- <v-divider :thickness="4" class="border-opacity-50" color="black"></v-divider> -->
   <br />
-  <split-carousel cycle :interval="1000" height="550px" hide-delimiters>
+  <split-carousel cycle :interval="1500" height="550px" hide-delimiters>
     <div class="d-flex flex-no-wrap justify-space-between">
       <split-carousel-item v-for="(bebas, i) in tampungKSM" :key="i" dense>
         <v-row align="center" justify="center" dense>
           <v-col align="center" cols="12" md="2" dense>
             <v-card
               variant="tonal"
-              width="400"
-              height="850px"
-              class="bg-white rounded-xl"
+              width="425px"
+              height="520px"
+              class="bg-white rounded-xl border-surface-variant"
               id="warnacard"
             >
               <!-- Nama KSM -->
@@ -31,27 +31,27 @@
                 class="font-bold text-white"
                 id="warnasheet"
                 ><br />
-                <h2 align="center">
+                <h3 align="center">
                   {{ bebas.ket_ksm }}
-                </h2>
+                </h3>
               </v-sheet>
 
               <v-card-text
                 v-for="(jadwal, indexJadwal) in bebas.jadwal"
                 :key="indexJadwal"
                 rounded="xl"
+                id="warnacard2"
               >
                 <v-sheet
                   v-if="
                     new Date() >= new Date(jadwal.Jaga_awal) &&
                     new Date() <= new Date(jadwal.Jaga_akhir)
                   "
-                  rounded="xl"
                 >
-                  <v-sheet-item class="mt-2 rounded-xl">
+                  <v-sheet-item id="warnacard3">
                     <h2>{{ jadwal.Level.Nama_level_igd }}</h2>
                   </v-sheet-item>
-                  <v-sheet-item class="mt-2">
+                  <v-sheet-item id="warnacard4">
                     <h3>{{ jadwal.Nama_petugas }}</h3>
                   </v-sheet-item>
                 </v-sheet>
@@ -155,21 +155,35 @@ const updateKSM = async () => {
 
 updateKSM(); // Panggilan awal untuk memulai proses
 </script>
+
 <style>
 #warnasheet {
-  background: linear-gradient(
-    90deg,
-    rgba(131, 58, 180, 1) 0%,
-    rgb(255, 1, 1) 50%,
-    rgba(252, 176, 69, 1) 100%
-  );
+  background: linear-gradient(180deg, #315f43 0%, #44f57a 100%);
   text-transform: uppercase;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 #warnacard {
-  background: linear-gradient(to top, #30cfd0 0%, #330867 100%);
+  background-color: transparent;
 }
 
+#warnacard3 {
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  font-style: unset;
+  text-transform: uppercase;
+  text-align: left;
+}
+
+#warnacard2 {
+}
+
+#warnacard4 {
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
+  text-align: left;
+}
 /* #warnaitemcard {
   background: white;
 } */
 </style>
+background-color: #315f43; background-image: linear-gradient(180deg, #315f43 0%,
+#44f57a 100%);

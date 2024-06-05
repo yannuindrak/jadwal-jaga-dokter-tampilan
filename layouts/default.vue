@@ -1,6 +1,5 @@
 <template>
   <v-app id="app">
-    <!-- <NavigationsAppbar /> -->
     <NavigationsHeader />
     <DashboardKonten />
     <!-- <NavigationsFooter /> -->
@@ -10,8 +9,9 @@
 </template>
 <style>
 #app {
-  background: linear-gradient(180deg, #08aeea 0%, #2af598 50%, #ffffff 100%);
+  background: linear-gradient(215deg, #ffffff 0%, #dedcdc 99%);
 }
 </style>
-background-color: #08AEEA; background-image: linear-gradient(180deg, #08AEEA 0%,
-#2AF598 50%, #ffffff 100%);
+background-color: #d8d3d3; background-image: linear-gradient(225deg, #d8d3d3 0%,
+#ffffff 99%); background-color: #ffffff; background-image:
+linear-gradient(215deg, #ffffff 0%, #dedcdc 99%);
