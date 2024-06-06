@@ -20,8 +20,8 @@
             <v-card
               variant="tonal"
               width="425px"
-              height="520px"
-              class="bg-white rounded-xl border-surface-variant"
+              height="550px"
+              class="bg-white rounded-xl border-xl"
               id="warnacard"
             >
               <!-- Nama KSM -->
@@ -31,9 +31,9 @@
                 class="font-bold text-white"
                 id="warnasheet"
                 ><br />
-                <h3 align="center">
+                <h2 align="center">
                   {{ bebas.ket_ksm }}
-                </h3>
+                </h2>
               </v-sheet>
 
               <v-card-text
@@ -158,12 +158,10 @@ updateKSM(); // Panggilan awal untuk memulai proses
 
 <style>
 #warnasheet {
-  background: linear-gradient(180deg, #315f43 0%, #44f57a 100%);
+  /* background: linear-gradient(180deg, #315f43 0%, #44f57a 100%); */
   text-transform: uppercase;
-  font-family: Verdana, Geneva, Tahoma, sans-serif;
-}
-#warnacard {
-  background-color: transparent;
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  -webkit-text-fill-color: rgb(49, 43, 43);
 }
 
 #warnacard3 {
@@ -185,5 +183,3 @@ updateKSM(); // Panggilan awal untuk memulai proses
   background: white;
 } */
 </style>
-background-color: #315f43; background-image: linear-gradient(180deg, #315f43 0%,
-#44f57a 100%);
