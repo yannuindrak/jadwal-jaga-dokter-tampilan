@@ -62,6 +62,7 @@
 
 <script>
 import { SplitCarousel, SplitCarouselItem } from "vue-split-carousel";
+
 export default {
   components: {
     SplitCarousel,

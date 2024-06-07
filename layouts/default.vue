@@ -1,6 +1,6 @@
 <template>
   <v-app id="app">
-    <NavigationsHeader2 />
+    <NavigationsHeader />
     <DashboardKonten />
     <!-- <NavigationsFooter /> -->
   </v-app>
