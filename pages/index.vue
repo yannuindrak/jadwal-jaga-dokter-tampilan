@@ -1,26 +1,22 @@
+<style scoped>
+@import url("~/assets/css/dashboard.css");
+</style>
 <template>
-  <!-- {{ tampungKSM }} -->
-  <!-- 
-  <div align="center" mb="50">
-    <h1 class="text-lg font-bold text-white">JADWAL JAGA DOKTER IGD</h1>
-  </div>
-
-  <div align="center" mb="50">
-    <h2 class="text-lg font-bold text-white"><jam /></h2>
-  </div>
-  <br /> -->
-
-  <!-- <v-divider :thickness="4" class="border-opacity-50" color="black"></v-divider> -->
-  <br />
-  <split-carousel cycle :interval="1500" height="550px" hide-delimiters>
+  <split-carousel
+    cycle
+    :interval="3000"
+    height="560px"
+    hide-delimiters
+    :speed="400"
+  >
     <div class="d-flex flex-no-wrap justify-space-between">
       <split-carousel-item v-for="(bebas, i) in tampungKSM" :key="i" dense>
         <v-row align="center" justify="center" dense>
           <v-col align="center" cols="12" md="2" dense>
             <v-card
               variant="tonal"
-              width="425px"
-              height="550px"
+              width="420px"
+              height="560px"
               class="bg-white rounded-xl border-xl"
               id="warnacard"
             >
@@ -30,7 +26,7 @@
                 height="100px"
                 class="font-bold text-white"
                 id="warnasheet"
-                ><br />
+              >
                 <h2 align="center">
                   {{ bebas.ket_ksm }}
                 </h2>
@@ -62,7 +58,6 @@
       </split-carousel-item>
     </div>
   </split-carousel>
-  <v-footer></v-footer>
 </template>
 
 <script>
@@ -155,31 +150,3 @@ const updateKSM = async () => {
 
 updateKSM(); // Panggilan awal untuk memulai proses
 </script>
-
-<style>
-#warnasheet {
-  /* background: linear-gradient(180deg, #315f43 0%, #44f57a 100%); */
-  text-transform: uppercase;
-  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
-  -webkit-text-fill-color: rgb(49, 43, 43);
-}
-
-#warnacard3 {
-  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
-  font-style: unset;
-  text-transform: uppercase;
-  text-align: left;
-}
-
-#warnacard2 {
-}
-
-#warnacard4 {
-  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
-    "Lucida Sans", Arial, sans-serif;
-  text-align: left;
-}
-/* #warnaitemcard {
-  background: white;
-} */
-</style>

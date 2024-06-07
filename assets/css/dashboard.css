@@ -1,0 +1,21 @@
+#warnasheet {
+  /* background: linear-gradient(180deg, #315f43 0%, #44f57a 100%); */
+  text-transform: uppercase;
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  -webkit-text-fill-color: rgb(49, 43, 43);
+  background-color: white;
+}
+
+#warnacard3 {
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  font-style: unset;
+  text-transform: uppercase;
+  text-align: left;
+  background-color: white;
+}
+
+#warnacard4 {
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
+  text-align: left;
+}

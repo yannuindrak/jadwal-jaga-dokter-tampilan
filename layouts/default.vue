@@ -9,6 +9,6 @@
 </template>
 <style>
 #app {
-  background: linear-gradient(215deg, #ffffff 0%, #dedcdc 99%);
+  background: whitesmoke;
 }
 </style>
