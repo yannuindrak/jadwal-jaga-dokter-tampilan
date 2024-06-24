@@ -1,8 +1,8 @@
 <template>
   <v-app id="app">
     <NavigationsHeader />
-    <DashboardKonten />
-    <!-- <NavigationsFooter /> -->
+    <br />
+    <DashboardKonten3 />
   </v-app>
 
   <slot />
