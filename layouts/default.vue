@@ -2,7 +2,7 @@
   <v-app id="app">
     <NavigationsHeader />
     <br />
-    <DashboardKonten3 />
+    <DashboardKonten />
   </v-app>
 
   <slot />

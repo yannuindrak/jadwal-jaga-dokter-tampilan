@@ -4,8 +4,8 @@
 <template>
   <split-carousel
     cycle
-    :interval="3000"
-    height="560px"
+    :interval="60000"
+    height="580px"
     hide-delimiters
     :speed="400"
   >
@@ -16,8 +16,8 @@
             <v-card
               variant="tonal"
               width="420px"
-              height="560px"
-              class="bg-white rounded-xl border-xl"
+              height="580px"
+              class="bg-white rounded-xl border-lg"
               id="warnacard"
             >
               <!-- Nama KSM -->
@@ -26,7 +26,7 @@
                 height="100px"
                 class="font-bold text-white"
                 id="warnasheet"
-              >
+                ><br />
                 <h2 align="center">
                   {{ bebas.ket_ksm }}
                 </h2>
@@ -40,16 +40,34 @@
               >
                 <v-sheet
                   v-if="
-                    new Date() >= new Date(jadwal.Jaga_awal) &&
-                    new Date() <= new Date(jadwal.Jaga_akhir)
+                    new Date() >= new Date(jadwal.Tanggal_awal) &&
+                    new Date() <= new Date(jadwal.Tanggal_akhir)
                   "
+                  rounded="xl"
+                  align="left"
                 >
-                  <v-sheet-item id="warnacard3">
-                    <h2>{{ jadwal.Level.Nama_level_igd }}</h2>
+                  <v-sheet-item class="mt-2 rounded-xl">
+                    <h2>{{ jadwal.Tingkat_supervisi }}</h2>
                   </v-sheet-item>
-                  <v-sheet-item id="warnacard4">
-                    <h3>{{ jadwal.Nama_petugas }}</h3>
-                  </v-sheet-item>
+                  <!-- Tampil nama + gelar -->
+                  <h3>
+                    <v-sheet-item
+                      class="mt-2"
+                      v-for="(gelar, index) in jadwal.Nama_dpjp.Gelar_depan"
+                      :key="index"
+                    >
+                      {{ gelar.daftar_gelar_depan_id.Gelar_depan }}
+                    </v-sheet-item>
+                    {{ jadwal.Dokter_jaga }},
+                    <v-sheet-item
+                      class="mt-2"
+                      v-for="(gelar, index) in jadwal.Nama_dpjp.Gelar_belakang"
+                      :key="index"
+                    >
+                      {{ gelar.daftar_gelar_belakang_id.Gelar_belakang }}
+                    </v-sheet-item>
+                  </h3>
+                  <!-- End of tampil nama + gelar -->
                 </v-sheet>
               </v-card-text>
             </v-card>
@@ -62,7 +80,6 @@
 
 <script>
 import { SplitCarousel, SplitCarouselItem } from "vue-split-carousel";
-
 export default {
   components: {
     SplitCarousel,
@@ -71,8 +88,6 @@ export default {
 };
 </script>
 <script setup>
-// const { data: daftar_ksm, } = await useFetch(() => 'https://satu.dev.rssa.id/items/daftar_ksm');
-
 import { ref, onMounted, onUnmounted } from "vue";
 
 const waktuSekarang = ref({
@@ -116,27 +131,30 @@ let tampungKSM = ref([]);
 const updateKSM = async () => {
   console.log("ini refresh");
   tampungKSM.value = []; // Kosongkan array sebelum mengisi ulang
-  const _dataKSM = await $fetch(`https://satu.dev.rssa.id/items/daftar_ksm`);
+  const _dataKSM = await $fetch(`https://satu.rssa.top/items/daftar_ksm`);
   const ksm = _dataKSM.data;
   const _jdwlDokter = await $fetch(
-    `https://satu.dev.rssa.id/items/data_jadwal_jaga_dokter?fields=id,Nama_petugas,Ksm,Level.Nama_level_igd,Jaga_awal,Jaga_akhir&filter[Jaga_awal][_between]=[${tanggalKemarin}, ${tanggalBesok}]`
+    `https://satu.rssa.top/items/data_jadwal_jaga_igd?fields=id,Dokter_jaga,KSM,Tanggal_awal,Tanggal_akhir,Tingkat_supervisi,Nama_dpjp.Gelar_depan.daftar_gelar_depan_id.Gelar_depan,Nama_dpjp.Gelar_belakang.daftar_gelar_belakang_id.Gelar_belakang&filter[Tanggal_awal][_between]=[${tanggalKemarin}, ${tanggalBesok}]`
   );
+
   const jdwlDokters = _jdwlDokter.data;
 
   ksm.forEach((_ksm) => {
     let idksm = _ksm["id"];
 
-    let filterjdwl = jdwlDokters.filter((jadwal) => jadwal["Ksm"] === idksm);
+    let filterjdwl = jdwlDokters.filter((jadwal) => jadwal["KSM"] === idksm); //ksm berisi jadwal di dalamnya
     if (filterjdwl && filterjdwl.length > 0) {
+      //logikanya berarti, utk nama & gelar
       let tampiljadwalBaru = {
+        //1 nama mempunyai beberapa gelar
         idksm: _ksm["id"],
         ket_ksm: _ksm["Nama_ksm"],
         jadwal: [],
       };
       const sekarang = new Date();
       filterjdwl.forEach((jdwl) => {
-        const awal = new Date(jdwl.Jaga_awal);
-        const akhir = new Date(jdwl.Jaga_akhir);
+        const awal = new Date(jdwl.Tanggal_awal);
+        const akhir = new Date(jdwl.Tanggal_akhir);
         if (sekarang >= awal && sekarang <= akhir) {
           tampiljadwalBaru.jadwal.push(jdwl);
         }

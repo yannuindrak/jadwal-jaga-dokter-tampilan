@@ -1,3 +1,6 @@
+<style scoped>
+@import url("~/assets/css/dashboard.css");
+</style>
 <template>
   <split-carousel cycle :interval="1000" height="550px" hide-delimiters>
     <div class="d-flex flex-no-wrap justify-space-between">
@@ -6,9 +9,9 @@
           <v-col align="center" cols="12" md="2" dense>
             <v-card
               variant="tonal"
-              width="370"
-              height="450px"
-              class="bg-white rounded-xl"
+              width="430px"
+              height="580px"
+              class="bg-white rounded-xl border-t-md"
               id="warnacard"
             >
               <!-- Nama KSM -->
@@ -27,6 +30,7 @@
                 v-for="(jadwal, indexJadwal) in bebas.jadwal"
                 :key="indexJadwal"
                 rounded="xl"
+                id="warnacard2"
               >
                 <v-sheet
                   v-if="
@@ -158,23 +162,3 @@ const updateKSM = async () => {
 
 updateKSM(); // Panggilan awal untuk memulai proses
 </script>
-<style>
-#warnasheet {
-  background: rgb(0, 120, 255);
-
-  text-transform: uppercase;
-}
-
-#warnacard {
-  background: rgb(0, 120, 255);
-  background: radial-gradient(
-    circle,
-    rgba(0, 120, 255, 0.18531162464985995) 0%,
-    rgba(243, 251, 252, 1) 100%
-  );
-}
-
-/* #warnaitemcard {
-      background: white;
-    } */
-</style>
