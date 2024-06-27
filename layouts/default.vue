@@ -1,7 +1,7 @@
 <template>
   <v-app id="app">
     <NavigationsHeader />
-    <br />
+
     <DashboardKonten />
   </v-app>
 

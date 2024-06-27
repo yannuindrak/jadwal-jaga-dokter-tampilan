@@ -5,7 +5,7 @@
   <split-carousel
     cycle
     :interval="1000"
-    height="620px"
+    height="630px"
     width="600px"
     hide-delimiters
     :speed="400"
@@ -17,7 +17,7 @@
             <v-card
               variant="flat"
               width="420px"
-              height="580px"
+              height="600px"
               class="bg-white rounded-xl"
               id="warnacard"
               elevation="16"
@@ -48,11 +48,12 @@
                   rounded="xl"
                   align="left"
                 >
-                  <v-sheet-item class="mt-2 rounded-xl" id="vsheetitem">
+                  <v-sheet-item class="mt-2 rounded-xl">
                     <h2>{{ jadwal.Tingkat_supervisi }}</h2>
                   </v-sheet-item>
+
                   <!-- Tampil nama + gelar -->
-                  <h3 id="namasheetitem">
+                  <h3 v-if="jadwal.Profesi_dokter === 1">
                     <v-sheet-item
                       class="mt-2"
                       v-for="(gelar, index) in jadwal.Nama_dpjp.Gelar_depan"
@@ -60,7 +61,8 @@
                     >
                       {{ gelar.daftar_gelar_depan_id.Gelar_depan }}
                     </v-sheet-item>
-                    {{ jadwal.Dokter_jaga }},
+                    <v-sheet-item> {{ jadwal.Dokter_jaga }}, </v-sheet-item>
+
                     <v-sheet-item
                       class="mt-2"
                       v-for="(gelar, index) in jadwal.Nama_dpjp.Gelar_belakang"
@@ -69,8 +71,13 @@
                       {{ gelar.daftar_gelar_belakang_id.Gelar_belakang }}
                     </v-sheet-item>
                   </h3>
-
-                  <v-divider class="border-opacity-70"></v-divider>
+                  <h3 v-if="jadwal.Profesi_dokter === 2">
+                    <v-sheet-item>
+                      {{ jadwal.Dokter_jaga }}
+                    </v-sheet-item>
+                  </h3>
+                  <br />
+                  <v-divider class="border-opacity-50"></v-divider>
                   <!-- End of tampil nama + gelar -->
                 </v-sheet>
               </v-card-text>
@@ -138,7 +145,7 @@ const updateKSM = async () => {
   const _dataKSM = await $fetch(`https://satu.rssa.top/items/daftar_ksm`);
   const ksm = _dataKSM.data;
   const _jdwlDokter = await $fetch(
-    `https://satu.rssa.top/items/data_jadwal_jaga_igd?fields=id,Dokter_jaga,KSM,Tanggal_awal,Tanggal_akhir,Tingkat_supervisi,Nama_dpjp.Gelar_depan.daftar_gelar_depan_id.Gelar_depan,Nama_dpjp.Gelar_belakang.daftar_gelar_belakang_id.Gelar_belakang&filter[Tanggal_awal][_between]=[${tanggalKemarin}, ${tanggalBesok}]`
+    `https://satu.rssa.top/items/data_jadwal_jaga_igd?fields=id,Dokter_jaga,Profesi_dokter,KSM,Tanggal_awal,Tanggal_akhir,Tingkat_supervisi,Nama_dpjp.Gelar_depan.daftar_gelar_depan_id.Gelar_depan,Nama_dpjp.Gelar_belakang.daftar_gelar_belakang_id.Gelar_belakang&filter[Tanggal_awal][_between]=[${tanggalKemarin}, ${tanggalBesok}]`
   );
 
   const jdwlDokters = _jdwlDokter.data;
