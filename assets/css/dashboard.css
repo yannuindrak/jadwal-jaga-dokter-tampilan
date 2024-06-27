@@ -2,7 +2,7 @@
   /* background: linear-gradient(180deg, #315f43 0%, #44f57a 100%); */
   text-transform: uppercase;
   font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
-  background-color: #585858;
+  background-color: #4c4c4c;
   -webkit-text-fill-color: rgb(255, 255, 255);
 }
 
@@ -22,4 +22,14 @@
 
 #warnacard {
   background-color: blue;
+}
+
+#vsheetitem {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+#namasheetitem {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif,
+    "Lucida Sans Unicode", "Lucida Grande", "Lucida Sans", Arial, sans-serif;
+  font-size: 21px;
 }

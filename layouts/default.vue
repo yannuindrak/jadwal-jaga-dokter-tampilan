@@ -9,6 +9,6 @@
 </template>
 <style>
 #app {
-  background: whitesmoke;
+  background: rgb(255, 255, 255);
 }
 </style>

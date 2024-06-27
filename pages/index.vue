@@ -4,8 +4,9 @@
 <template>
   <split-carousel
     cycle
-    :interval="60000"
-    height="580px"
+    :interval="1000"
+    height="620px"
+    width="600px"
     hide-delimiters
     :speed="400"
   >
@@ -14,11 +15,12 @@
         <v-row align="center" justify="center" dense>
           <v-col align="center" cols="12" md="2" dense>
             <v-card
-              variant="tonal"
+              variant="flat"
               width="420px"
               height="580px"
-              class="bg-white rounded-xl border-lg"
+              class="bg-white rounded-xl"
               id="warnacard"
+              elevation="16"
             >
               <!-- Nama KSM -->
               <v-sheet
@@ -46,11 +48,11 @@
                   rounded="xl"
                   align="left"
                 >
-                  <v-sheet-item class="mt-2 rounded-xl">
+                  <v-sheet-item class="mt-2 rounded-xl" id="vsheetitem">
                     <h2>{{ jadwal.Tingkat_supervisi }}</h2>
                   </v-sheet-item>
                   <!-- Tampil nama + gelar -->
-                  <h3>
+                  <h3 id="namasheetitem">
                     <v-sheet-item
                       class="mt-2"
                       v-for="(gelar, index) in jadwal.Nama_dpjp.Gelar_depan"
@@ -67,6 +69,8 @@
                       {{ gelar.daftar_gelar_belakang_id.Gelar_belakang }}
                     </v-sheet-item>
                   </h3>
+
+                  <v-divider class="border-opacity-70"></v-divider>
                   <!-- End of tampil nama + gelar -->
                 </v-sheet>
               </v-card-text>
