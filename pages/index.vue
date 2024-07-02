@@ -145,7 +145,7 @@ const updateKSM = async () => {
   const _dataKSM = await $fetch(`https://satu.rssa.top/items/daftar_ksm`);
   const ksm = _dataKSM.data;
   const _jdwlDokter = await $fetch(
-    `https://satu.rssa.top/items/data_jadwal_jaga_igd?fields=id,Dokter_jaga,Profesi_dokter,KSM,Tanggal_awal,Tanggal_akhir,Tingkat_supervisi,Nama_dpjp.Gelar_depan.daftar_gelar_depan_id.Gelar_depan,Nama_dpjp.Gelar_belakang.daftar_gelar_belakang_id.Gelar_belakang&sort[]=Profesi_dokter&filter[Tanggal_awal][_between]=[${tanggalKemarin}, ${tanggalBesok}]`
+    `https://satu.rssa.top/items/data_jadwal_jaga_igd?fields=id,Dokter_jaga,Profesi_dokter,KSM,Tanggal_awal,Tanggal_akhir,Tingkat_supervisi,Nama_dpjp.Gelar_depan.daftar_gelar_depan_id.Gelar_depan,Nama_dpjp.Gelar_belakang.daftar_gelar_belakang_id.Gelar_belakang&sort[]=Profesi_dokter&sort[]=Profesi_dokter&filter[Tanggal_awal][_between]=[${tanggalKemarin}, ${tanggalBesok}]`
   );
 
   const jdwlDokters = _jdwlDokter.data;
