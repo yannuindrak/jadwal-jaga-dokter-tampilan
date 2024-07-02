@@ -4,7 +4,7 @@
 <template>
   <split-carousel
     cycle
-    :interval="1000"
+    :interval="10000"
     height="630px"
     width="600px"
     hide-delimiters
@@ -101,26 +101,26 @@ export default {
 <script setup>
 import { ref, onMounted, onUnmounted } from "vue";
 
-const waktuSekarang = ref({
-  tanggal: new Date().getDate(),
-  bulan: new Date().getMonth() + 1, // Bulan dimulai dari 0, jadi tambahkan 1
-  tahun: new Date().getFullYear(),
-  jam: new Date().getHours(),
-  menit: new Date().getMinutes(),
-  detik: new Date().getSeconds(),
-});
+// const waktuSekarang = ref({
+//   tanggal: new Date().getDate(),
+//   bulan: new Date().getMonth() + 1, // Bulan dimulai dari 0, jadi tambahkan 1
+//   tahun: new Date().getFullYear(),
+//   jam: new Date().getHours(),
+//   menit: new Date().getMinutes(),
+//   detik: new Date().getSeconds(),
+// });
 
-const formatDuaDigit = (nilai) => (nilai <= 9 ? `0${nilai}` : nilai);
+// const formatDuaDigit = (nilai) => (nilai <= 9 ? `0${nilai}` : nilai);
 
-const updateWaktu = () => {
-  const sekarang = new Date();
-  waktuSekarang.value.tanggal = formatDuaDigit(sekarang.getDate());
-  waktuSekarang.value.bulan = formatDuaDigit(sekarang.getMonth() + 1);
-  waktuSekarang.value.tahun = sekarang.getFullYear();
-  waktuSekarang.value.jam = formatDuaDigit(sekarang.getHours());
-  waktuSekarang.value.menit = formatDuaDigit(sekarang.getMinutes());
-  waktuSekarang.value.detik = formatDuaDigit(sekarang.getSeconds());
-};
+// const updateWaktu = () => {
+//   const sekarang = new Date();
+//   waktuSekarang.value.tanggal = formatDuaDigit(sekarang.getDate());
+//   waktuSekarang.value.bulan = formatDuaDigit(sekarang.getMonth() + 1);
+//   waktuSekarang.value.tahun = sekarang.getFullYear();
+//   waktuSekarang.value.jam = formatDuaDigit(sekarang.getHours());
+//   waktuSekarang.value.menit = formatDuaDigit(sekarang.getMinutes());
+//   waktuSekarang.value.detik = formatDuaDigit(sekarang.getSeconds());
+// };
 
 const tanggalSekarang = new Date();
 const tanggalKemarin = new Date(
@@ -145,7 +145,7 @@ const updateKSM = async () => {
   const _dataKSM = await $fetch(`https://satu.rssa.top/items/daftar_ksm`);
   const ksm = _dataKSM.data;
   const _jdwlDokter = await $fetch(
-    `https://satu.rssa.top/items/data_jadwal_jaga_igd?fields=id,Dokter_jaga,Profesi_dokter,KSM,Tanggal_awal,Tanggal_akhir,Tingkat_supervisi,Nama_dpjp.Gelar_depan.daftar_gelar_depan_id.Gelar_depan,Nama_dpjp.Gelar_belakang.daftar_gelar_belakang_id.Gelar_belakang&filter[Tanggal_awal][_between]=[${tanggalKemarin}, ${tanggalBesok}]`
+    `https://satu.rssa.top/items/data_jadwal_jaga_igd?fields=id,Dokter_jaga,Profesi_dokter,KSM,Tanggal_awal,Tanggal_akhir,Tingkat_supervisi,Nama_dpjp.Gelar_depan.daftar_gelar_depan_id.Gelar_depan,Nama_dpjp.Gelar_belakang.daftar_gelar_belakang_id.Gelar_belakang&sort[]=Profesi_dokter&filter[Tanggal_awal][_between]=[${tanggalKemarin}, ${tanggalBesok}]`
   );
 
   const jdwlDokters = _jdwlDokter.data;
